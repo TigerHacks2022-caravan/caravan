@@ -1,9 +1,9 @@
 const express = require('express')
-const app = express()
+
 // userRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /user.
-// const userRoutes = express.Router()
+const userRoutes = express.Router()
 
 // This will help us connect to the database
 const dbo = require('../db/conn')
@@ -12,7 +12,7 @@ const dbo = require('../db/conn')
 const ObjectId = require('mongodb').ObjectId
 
 // This section will help you get a list of all the users.
-app.get('/user', (req, res) => {
+userRoutes.route('/user').get((req, res) => {
 	try {
 		let db_connect = dbo.getDb()
 		db_connect
@@ -33,7 +33,7 @@ app.get('/user', (req, res) => {
 })
 
 // This section will help you get a single user by id
-app.get('/user/:id', (req, res) => {
+userRoutes.route('/user/:id').get((req, res) => {
 	try {
 		let db_connect = dbo.getDb() 
 		let myquery = { _id: ObjectId(req.params.id) }
@@ -54,7 +54,7 @@ app.get('/user/:id', (req, res) => {
 })
 
 // This section will help you create a new user.
-app.post('/user/add', (req, res) => {
+userRoutes.route('/user/add').post((req, res) => {
 	try {
 		let db_connect = dbo.getDb()
 		let myobj = {
@@ -79,7 +79,7 @@ app.post('/user/add', (req, res) => {
 })
 
 // This section will help you update a user by id.
-app.put('/update/:id', (req, res) => {
+userRoutes.route('/update/:id').pos+t((req, res) => {
 	try {
 	let db_connect = dbo.getDb()
 	let myquery = { _id: ObjectId(req.params.id) }
@@ -108,7 +108,7 @@ app.put('/update/:id', (req, res) => {
 })
 
 // This section will help you delete a user
-app.delete('/:id', (req, res) =>  {
+userRoutes.route('/:id').delete((req, res) =>  {
 	try {
 	let db_connect = dbo.getDb()
 	let myquery = { _id: ObjectId(req.params.id) }
@@ -129,4 +129,4 @@ app.delete('/:id', (req, res) =>  {
 	}
 })
 
-// module.exports = userRoutes
+module.exports = userRoutes
