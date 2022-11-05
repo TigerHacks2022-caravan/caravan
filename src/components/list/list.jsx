@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CircularProgress, Grid, Typography, Card} from '@material-ui/core';
+import { CircularProgress, Grid, Typography, Card, CardContent} from '@material-ui/core';
 
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 
@@ -32,7 +32,9 @@ const List = () => {
                 {places?.map((place, i) => (
                         <Grid item key={i} xs={12}>
                             <Card>
-                            <PlaceDetails place={place} />
+                              <CardContent>
+                                <PlaceDetails place={place} />
+                              </CardContent>
                             </Card>
                         </Grid>    
                 ))}
