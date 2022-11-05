@@ -11,14 +11,15 @@ const connectDB = async () => {
 	try {
 		await client.connect()
 		console.log('successful connection to atlas')
-		module.exports = client.db('Caravan-TigerHacks2022')
+		module.exports = client
 		const app = require('server')
 		app.listen(5000)
 	} catch (e) {
 		console.log('error connecting to atlas: ', e.stack)
-	} finally {
-		await client.close()
 	}
+	// finally {
+	// 	await client.close()
+	// }
 }
 
 // connectDB()	// test connectDB
