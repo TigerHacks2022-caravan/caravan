@@ -23,6 +23,16 @@ const port = process.env.PORT || 5000
 
 // console.log('db: ', db)
 
+app.get('/', function (req, res) {
+	res.send('Hello World')
+})
+
+app.get('/twee', (req, res) => {
+	return main(req, res)
+})
+
+app.listen(port)
+
 // Connection URL
 const url = process.env.MONGODB_URI
 const client = new MongoClient(url)
@@ -30,20 +40,22 @@ const client = new MongoClient(url)
 // Database Name
 const dbName = 'non-prod'
 
-async function main() {
-	// Use connect method to connect to the server
-	await client.connect()
-	console.log('Connected successfully to server')
-	const db = client.db(dbName)
-	const collection = db.collection('caravans')
-	// const caravans = await collection.find({}).toArray()
-	// console.log('caravans: ', caravans)
-	// the following code examples can be pasted here...
+async function main(req, res) {
+	try {
+		// Use connect method to connect to the server
+		await client.connect()
+		console.log('Connected successfully to server')
+		const db = client.db(dbName)
+		const collection = db.collection('caravans')
+		const caravans = await collection.find({}).toArray()
+		// console.log('caravans: ', caravans)
+		// the following code examples can be pasted here...
 
-	return 'done.'
+		return res.status(200).send({
+			data: caravans
+		})
+	} catch (e) {
+		console.error(e)
+		return res.status(400).send({})
+	}
 }
-
-main()
-	.then(console.log)
-	.catch(console.error)
-	.finally(() => client.close())

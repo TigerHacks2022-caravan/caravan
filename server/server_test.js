@@ -1,5 +1,6 @@
 const express = require('express')
 const { MongoClient } = require('mongodb')
+const app = express()
 
 console.log(process.env.ATLAS_URI)
 
