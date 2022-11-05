@@ -36,8 +36,8 @@ async function main() {
 	console.log('Connected successfully to server')
 	const db = client.db(dbName)
 	const collection = db.collection('caravans')
-	const caravans = await collection.find({}).toArray()
-	console.log('caravans: ', caravans)
+	// const caravans = await collection.find({}).toArray()
+	// console.log('caravans: ', caravans)
 	// the following code examples can be pasted here...
 
 	return 'done.'
