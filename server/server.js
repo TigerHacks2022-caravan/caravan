@@ -5,19 +5,15 @@ app.use(bodyParser.json())
 require('dotenv').config()
 const port = process.env.PORT || 5000
 
-<<<<<<< HEAD
-const tweeHandler = require('./controllers/tweeHandler')
-const tweeJoinHandler = require('./controllers/tweeJoinHandler')
-const newTweeHandler = require('./controllers/tweeCreateHandler')
-=======
 const tweeHandler = require('./controllers/tweeHandlers/tweeHandler')
-const tweeIdHandler = require('./controllers/tweeHandlers/tweeIdHandler')
+const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
+const tweeHandler = require('./controllers/tweeHandlers/tweeHandler')
+const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
 // const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
-const newTweeHandler = require('./controllers/tweeHandlers/newTweeHandler')
+const tweeCreateHandler = require('./controllers/tweeHandlers/tweeCreateHandler')
 
 const getUserHandler = require('./controllers/userHandlers/getUserIdHandler')
 const postUserHandler = require('./controllers/userHandlers/postUserHandler')
->>>>>>> 22b88a6a33d750e21f28a9ff4f9ab2268ce9f62b
 
 // routes
 app.get('/', (req, res) => {
@@ -27,12 +23,12 @@ app.get('/', (req, res) => {
 // twee (caravan) routes
 
 app.get('/twee', tweeHandler)
-app.get('/twee/:id', tweeIdHandler)
+app.get('/twee/:id', tweeJoinHandler)
 
 // user routes
 app.get('/user/:id', getUserHandler)
 app.post('/user', postUserHandler)
-app.post('/twee', newTweeHandler)
+app.post('/twee', tweeCreateHandler)
 
 // app.put('/twee/:id', tweeJoinHandler)
 
