@@ -13,7 +13,7 @@ import PlaceDetails from "../placedetails/placedetails";
 
 import useStyles from "./styles.js";
 import useCaravansQuery from "../../queries/useCaravansQuery";
-import { caravanAtom } from "../../atoms/atoms";
+import { caravanAtom, selectedCaravanAtom } from "../../atoms/atoms";
 import { useRecoilState } from "recoil";
 
 export const placesData = [
@@ -50,7 +50,8 @@ const List = () => {
   const classes = useStyles();
 
   const { data: caravans, isLoading, error } = useCaravansQuery();
-  const [selectedCaravan, setSelectedCaravan] = useRecoilState(caravanAtom);
+  const [selectedCaravan, setSelectedCaravan] =
+    useRecoilState(selectedCaravanAtom);
 
   const handleCardClick = (caravan) => {
     if (selectedCaravan === caravan._id) {
@@ -85,7 +86,7 @@ const List = () => {
                 // className={classes.card}
                 className={classNames(
                   classes.card,
-                  caravan._id === selectedCaravan && "active-caravan"
+                  caravan._id === selectedCaravan && classes.activeCard
                 )}
                 onClick={() => handleCardClick(caravan)}
               >

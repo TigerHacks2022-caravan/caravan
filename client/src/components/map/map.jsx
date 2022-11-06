@@ -64,8 +64,8 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
               key={caravan._id}
               id={caravan._id}
               className="pin bounce"
-              // lat={caravan.location.lat}
-              // lng={caravan.location.lng}
+              lat={caravan.location.lat}
+              lng={caravan.location.lng}
               text={caravan.name}
               description={caravan.description || ""}
             />
@@ -88,7 +88,7 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
           lat={coords.lat}
           lng={coords.lng}
         />
-        <div
+        {/* <div
           id="rose"
           className="pin bounce"
           lat={38.954731}
@@ -111,7 +111,7 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
           className="pin bounce"
           lat={38.96617}
           lng={-92.37738}
-        />
+        /> */}
       </GoogleMapReact>
     </div>
   );
