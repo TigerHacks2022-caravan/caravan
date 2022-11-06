@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb')
 
-const tweeHandler = async (req, res) => {
+const tweeDeleteHandler = async (req, res) => {
 	try {
 		// Connection URL
 		const url = process.env.MONGODB_URI
@@ -13,15 +13,14 @@ const tweeHandler = async (req, res) => {
 		console.log('Connected successfully to server')
 		const db = client.db(dbName)
 		const collection = db.collection('caravans')
-		const caravans = await collection.find({}).toArray()
+		const caravan = await collection.deleteOne({_id: req.body.id}).toArray()
 
 		return res.status(200).send({
-			data: caravans
+			data: caravan
 		})
 	} catch (e) {
 		console.error(e)
 		return res.status(400).send({})
 	}
 }
-
-module.exports = tweeHandler
+module.exports = tweeDeleteHandler
