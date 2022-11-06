@@ -9,6 +9,7 @@ import { locationAtom, selectedCaravanAtom } from "../../atoms/atoms.js";
 import { caravanAtom } from "../../atoms/atoms.js";
 import "./marker.css";
 import useCaravansQuery from "../../queries/useCaravansQuery.js";
+import classNames from "classnames";
 
 const testCaravan = {
   _id: "abc",
@@ -64,6 +65,9 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
               key={caravan._id}
               id={caravan._id}
               className="pin bounce"
+              style={{
+                backgroundColor: caravan._id === selectedCaravan ? "red" : "",
+              }}
               lat={caravan.location.lat}
               lng={caravan.location.lng}
               text={caravan.name}
