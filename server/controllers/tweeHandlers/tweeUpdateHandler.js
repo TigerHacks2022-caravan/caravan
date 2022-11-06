@@ -16,29 +16,30 @@ const tweeUpdateHandler = async (req, res) => {
 
         if(!req.body) return res.status(400).send({message: 'Improper request'})
 
-		const newCaravan = {
-            name: name,
-            image_url: image_url,
-            description: description,
-			destination: destination,
-            uid: uid
-        }
+		const newCaravanInfo = req.body.newCaravan
+		const oldCaravanInfo = req.body.oldCaravan
 
-		// New caravan is populated by req using new values over old values where possible
-        req.body.name ? newCaravan.name = req.body.newName : newCaravan.name = req.body.name
-        req.body.image_url ? newCaravan.name = req.body.newImage_url : newCaravan.image_url = req.body.image_url
-        req.body.description ? newCaravan.name = req.body.newDescription : newCaravan.image_url = req.body.description
-		req.body.destination ? newCaravan.name = req.body.newDestination : newCaravan.image_url = req.body.destination
-		req.body.uid ? newCaravan.name = req.body.newUid : newCaravan.image_url = req.body.uid
+		// const newCaravan = {
+        //     name: name,
+        //     image_url: image_url,
+        //     description: description,
+		// 	destination: destination,
+        //     uid: uid
+        // }
+
+		// // New caravan is populated by req using new values over old values where possible
+        // newCaravan.name = (newCaravanInfo.name ? newCaravanInfo.name : oldCaravanInfo.name)
+        // newCaravan.image_url = (newCaravanInfo.image_url ? newCaravanInfo.image_url : oldCaravanInfo.image_url)
+        // newCaravan.description = (newCaravanInfo.description ? newCaravanInfo.description : oldCaravanInfo.description)
+        // newCaravan.destination = (newCaravanInfo.destination ? newCaravanInfo.destination : oldCaravanInfo.destination)
+        // newCaravan.uid = (newCaravanInfo.uid ? newCaravanInfo.uid : oldCaravanInfo.uid)
 
 
-        
 
-		const caravans = await collection.updateOne(newCaravan).toArray()
+		const caravans = await collection.updateOne({_id: oldCaravanInfo.name}, newCaravanInfo)
 
-		return res.status(200).send({
-			data: caravans
-		})
+		if(caravans.acknowledged == true) return res.status(200).send({data: caravans})
+		else return res.status(500).send({message: 'Error updating database'})
 	} catch (e) {
 		console.error(e)
 		return res.status(400).send({})

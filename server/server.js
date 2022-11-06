@@ -5,10 +5,8 @@ app.use(bodyParser.json())
 require('dotenv').config()
 const port = process.env.PORT || 5000
 
-const tweeHandler = require('./controllers/tweeHandlers/tweeHandler')
 const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
 const tweeHandler = require('./controllers/tweeHandlers/tweeHandler')
-const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
 // const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
 const tweeCreateHandler = require('./controllers/tweeHandlers/tweeCreateHandler')
 

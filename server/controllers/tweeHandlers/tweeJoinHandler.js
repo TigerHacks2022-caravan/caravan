@@ -18,7 +18,7 @@ const tweeJoinHandler = async (req, res) => {
 		const updatedCaravan = req.body.updatedCaravan
 		updatedCaravan.userList.push(req.body.uid)
 
-		await collection.updateOne(updatedCaravan)
+		await collection.addToSet(updatedCaravan)
 
 		return res.status(200).send({})
 	} catch (e) {
