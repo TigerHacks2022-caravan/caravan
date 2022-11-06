@@ -7,7 +7,6 @@ const port = process.env.PORT || 5000
 
 const tweeHandler = require('./controllers/tweeHandlers/tweeHandler')
 const tweeIdHandler = require('./controllers/tweeHandlers/tweeIdHandler')
-// const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
 const newTweeHandler = require('./controllers/tweeHandlers/newTweeHandler')
 
 const getUserHandler = require('./controllers/userHandlers/getUserIdHandler')
@@ -22,11 +21,12 @@ app.get('/', (req, res) => {
 
 app.get('/twee', tweeHandler)
 app.get('/twee/:id', tweeIdHandler)
+app.post('/twee', newTweeHandler)
 
 // user routes
 app.get('/user/:id', getUserHandler)
 app.post('/user', postUserHandler)
-app.post('/twee', newTweeHandler)
+app.put('/user')
 
 // app.put('/twee/:id', tweeJoinHandler)
 
