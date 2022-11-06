@@ -29,10 +29,11 @@ const tweeUpdateHandler = async (req, res) => {
             name: name,
             image_url: image_url,
             description: description,
+			destination: destination,
             uid: uid
         }
 
-		const caravans = await collection.insertOne(newCaravan).toArray()
+		const caravans = await collection.updateOne(newCaravan).toArray()
 
 		return res.status(200).send({
 			data: caravans
