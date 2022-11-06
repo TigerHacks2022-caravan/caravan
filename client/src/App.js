@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { CssBaseline, Grid } from '@material-ui/core'
-import { RecoilRoot } from 'recoil';
+import  { RecoilRoot }  from 'recoil';
+import { useRecoilState } from 'recoil';
 import GlobalStyle from './globalstyles';
 import Header from './components/header/header'
 import List from './components/list/list'
 import Map from './components/map/map'
+
 
 const App = () => {
 	const [coords, setCoords] = useState({})
@@ -21,9 +23,17 @@ const App = () => {
 			}
 		)
 	}, [])
+	useEffect(() => {
+		fetchCaravans(
+			({ 
+
+			})
+		)
+	}, [])
 
 	return (
 		<RecoilRoot>
+			
 			<GlobalStyle />
 			<CssBaseline />
 			<Header />

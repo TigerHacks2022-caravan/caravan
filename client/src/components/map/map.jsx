@@ -2,15 +2,20 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Paper, Typography, useMediaQuery } from '@material-ui/core';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import Rating from '@material-ui/lab';
-
+import { useRecoilState } from 'recoil';
 import mapStyles from '../../mapStyles.js'
 import useStyles from './styles.js';
+import { locationAtom } from '../../atoms/atoms.js';
+import { caravanAtom } from '../../atoms/atoms.js';
+import './marker.css';
 const Map = ({ coords, places, setCoords, setBounds}) => {
    const classes = useStyles();
    const isMobile = useMediaQuery('(min-width:600px)');
    
-   const coordinates = { lat: 38.95, lng: -92.33 };
+   /* const coordinates = { lat: 50, lng: -94 }; */
+   const [marker, setMarker] = useRecoilState(locationAtom);
+   const [caravans, setCaravans] = useRecoilState(caravanAtom);
+
     return (
         <div className={classes.mapContainer}>
             <GoogleMapReact
@@ -23,7 +28,11 @@ const Map = ({ coords, places, setCoords, setBounds}) => {
                 onChange={''}
                 onChildClick={''}
             >
-
+            {/* <Marker  */}
+            <div className='pin bounce'
+                lat={coords.lat}
+                lng={coords.lng}
+            />
             </GoogleMapReact>
         </div>
    ); 
