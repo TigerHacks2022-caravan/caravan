@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb')
 // import { MongoClient } from 'mongodb'
-const tweeHandler = async (req, res, collection) => {
+const tweeHandler = async (req, res) => {
 	try {
 		// Connection URL
 		const url = process.env.MONGODB_URI
@@ -25,4 +25,3 @@ const tweeHandler = async (req, res, collection) => {
 }
 
 module.exports = tweeHandler
-// export default tweeHandler
