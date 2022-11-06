@@ -99,6 +99,7 @@ const List = () => {
   const handleSubmit = () => {
     // submit data
     mutate(formData);
+    setOpen(false);
   };
 
   return (
