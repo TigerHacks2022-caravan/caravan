@@ -5,13 +5,16 @@ app.use(bodyParser.json())
 require('dotenv').config()
 const port = process.env.PORT || 5000
 
-const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
-const tweeHandler = require('./controllers/tweeHandlers/tweeHandler')
-// const tweeJoinHandler = require('./controllers/tweeHandlers/tweeJoinHandler')
-const tweeCreateHandler = require('./controllers/tweeHandlers/tweeCreateHandler')
+const getTweeHandler = require('./controllers/tweeHandlers/getTweeHandler')
+const joinTweeHandler = require('./controllers/tweeHandlers/joinTweeHandler')
+const postTweeHandler = require('./controllers/tweeHandlers/postTweeHandler')
+const putTweeHandler = require('./controllers/tweeHandlers/putTweeHandler')
+const deleteTweeHandler = require('./controllers/tweeHandlers/deleteTweeHandler')
 
-const getUserHandler = require('./controllers/userHandlers/getUserIdHandler')
+const getUserHandler = require('./controllers/userHandlers/getUserHandler')
 const postUserHandler = require('./controllers/userHandlers/postUserHandler')
+const putUserHandler = require('./controllers/userHandlers/putUserHandler')
+// const deleteUserHandler = require('./controllers/userHandlers/deleteUserHandler')
 
 // routes
 app.get('/', (req, res) => {
@@ -19,16 +22,17 @@ app.get('/', (req, res) => {
 })
 
 // twee (caravan) routes
-
-app.get('/twee', tweeHandler)
-app.get('/twee/:id', tweeJoinHandler)
+app.get('/twee', getTweeHandler) // get all
+app.get('/twee/:uid', joinTweeHandler) // get by id
+app.post('/twee', postTweeHandler) // post
+app.put('/twee', putTweeHandler) // put
+app.delete('/twee/:id', deleteTweeHandler) // delete
 
 // user routes
-app.get('/user/:id', getUserHandler)
-app.post('/user', postUserHandler)
-app.post('/twee', tweeCreateHandler)
-
-// app.put('/twee/:id', tweeJoinHandler)
+app.get('/user', getUserHandler) // get by name (no need to get all all)
+app.post('/user', postUserHandler) // post
+app.put('/user', putUserHandler) // put
+// app.delete('/user/:id', deleteUserHandler) // delete
 
 // listener
 app.listen(port)
