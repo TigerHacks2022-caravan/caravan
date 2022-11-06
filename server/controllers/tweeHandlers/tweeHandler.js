@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb')
-
-const tweeIdHandler = async (req, res) => {
+// import { MongoClient } from 'mongodb'
+const tweeHandler = async (req, res) => {
 	try {
 		// Connection URL
 		const url = process.env.MONGODB_URI
@@ -13,16 +13,15 @@ const tweeIdHandler = async (req, res) => {
 		console.log('Connected successfully to server')
 		const db = client.db(dbName)
 		const collection = db.collection('caravans')
-		const caravan = await collection.findOne({
-            _id: req.params.id
-        }).toArray()
+		const caravans = await collection.find({}).toArray()
 
 		return res.status(200).send({
-			data: caravan
+			data: caravans
 		})
 	} catch (e) {
 		console.error(e)
 		return res.status(400).send({})
 	}
 }
-module.exports = tweeIdHandler
+
+module.exports = tweeHandler
