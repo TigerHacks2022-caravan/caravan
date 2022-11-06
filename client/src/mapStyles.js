@@ -341,8 +341,3 @@ export default [
     ],
   },
 ];
-        "color": "#4e6d70"
-      }
-    ]
-  }
-]
