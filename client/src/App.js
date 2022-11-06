@@ -28,7 +28,11 @@ const App = () => {
 			const url = "http://localhost:5000/twee";
 			
 			try {
-			  const response = await fetch(url);
+			  const response = await fetch(url, {method:'GET', headers: {
+				'Accept': '*/*',
+				'Content-Type': '*/*'
+			  }});
+			   
 			  const data = await response.json();
 			  console.log({ data, body: data.body });
 			  // setCaravans(data.data)
