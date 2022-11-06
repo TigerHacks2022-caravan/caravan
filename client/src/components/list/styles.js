@@ -7,6 +7,15 @@ export default makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  cardheading: {
+    display: 'flex', position: 'relative'
+  },
+  eventheading: {
+    float: 'left'
+  },
+  addbutton: {
+    position: 'absolute', right: 0, borderRadius: 40, backgroundColor: 'white', color: '#85caff'
+  },
   loading: {
     height: '600px', display: 'flex', justifyContent: 'center', alignItems: 'center',
   },

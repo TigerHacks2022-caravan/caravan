@@ -5,7 +5,8 @@ const Placedetails = ({ place }) => {
     <>
         <h1>{place.name}</h1>
         <h2>{place.location}</h2>
-        <h4>{place.description}</h4>
+        <h5>{place.description}</h5>
+        <h4>{place.date}</h4>
     </>
    ); 
 }

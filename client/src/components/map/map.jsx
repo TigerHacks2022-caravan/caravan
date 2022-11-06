@@ -29,9 +29,25 @@ const Map = ({ coords, places, setCoords, setBounds}) => {
                 onChildClick={''}
             >
             {/* <Marker  */}
-            <div className='pin bounce'
+            <div id="userLocation" className='pin bounce'
                 lat={coords.lat}
                 lng={coords.lng}
+            />
+            <div id="rose" className='pin bounce'
+                lat={38.954731}
+                lng={-92.325653}
+            />
+            <div id="panera" className='pin bounce'
+                lat={38.948020}
+                lng={-92.295310}
+            />
+            <div id="shelter" className='pin bounce'
+                lat={38.955300}
+                lng={-92.367010}
+            />
+            <div id="valhalla" className='pin bounce'
+                lat={38.966170}
+                lng={-92.377380}
             />
             </GoogleMapReact>
         </div>
