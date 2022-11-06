@@ -9,3 +9,8 @@ export const caravanAtom = atom({
   key: "caravanAtom",
   default: [],
 });
+
+export const selectedCaravanAtom = atom({
+  key: "selectedCaravanAtom",
+  default: "",
+});

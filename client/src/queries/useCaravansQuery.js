@@ -1,16 +1,18 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { defaultConfig } from "./util";
 
 const caravansPlaceholderData = {
   caravans: [],
 };
 
+// GET /twee gets all caravans
+// data: Caravan[]
 const fetchCaravans = async () => {
-  const result = await fetch("/twee");
-  if (result.status >= 200 && result.status < 400) {
-    const data = await result.json();
-    console.log({ data });
-    return data;
+  const result = await fetch(`${process.env.REACT_APP_BASE_URL}/twee`);
+  if (result.status >= 200 && result.status < 300) {
+    const responseJson = await result.json();
+    console.log({ responseJson });
+    return responseJson.data;
   } else {
     const error = new Error();
     error.message = result.message || "Could not fetch caravans";

@@ -6,6 +6,7 @@ import Header from "./components/header/header";
 import List from "./components/list/list";
 import Map from "./components/map/map";
 import { locationAtom, caravanAtom } from "./atoms/atoms";
+import "./index.css";
 
 const App = () => {
   const [coords, setCoords] = useRecoilState(locationAtom);
