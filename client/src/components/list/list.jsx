@@ -4,6 +4,7 @@ import {
 	Grid,
 	Typography,
 	Card,
+	Button,
 	CardContent
 } from '@material-ui/core'
 
@@ -14,37 +15,43 @@ import { scryRenderedComponentsWithType } from 'react-dom/test-utils'
 
 const List = () => {
 	const classes = useStyles()
-	const [type, setType] = useState('restaurants')
-	const [rating, setRating] = useState('restaurants')
+
 	const places = [
 		{
-			name: "Luke's Party",
-			location: 'Pizza Tree',
-			description: 'This is a Description'
+			name: "Battle of the Bands",
+			location: 'Rose Music Hall',
+			description: 'Join us at Rose Music Hall for a battle of the bands!',
+			date: '11-11-22 8:00pm'
 		},
 		{
-			name: 'Wedding',
-			location: 'Columbia',
-			description: 'This is a Description'
+			name: 'Weekly Study Group',
+			location: 'Panera Bread',
+			description: 'We meet every Thursday to talk CS/IT and collaborate with one another, come by and meet some new folks!',
+			date: 'Thursdays @ 6pm'
 		},
 		{
-			name: 'Birthday',
-			location: 'Columbia',
-			description: 'This is a Description'
+			name: 'Yoga & Meditation',
+			location: 'Shelter Gardens',
+			description: 'Join us every Saturday morning for 30 minutes of yoga and meditation',
+			date: 'Saturdays @ 8am'
 		},
 		{
-			name: 'Graduation',
-			location: 'Columbia',
-			description: 'This is a Description'
+			name: 'Magic: The Gathering Tournament',
+			location: "Valhalla's Gate Games",
+			description: 'Beginners or advanced players, all are welcome! Come compete and meet fellow players!',
+			date: '11-19-22'
 		}
 	]
 	return (
 		<div className={classes.container}>
-			<Typography variant='h4'>Caravans Near You</Typography>
+			<div className={classes.cardheading}>
+			<Typography className={classes.eventsheading} variant='h4'>Events Near You</Typography>
+			<Button className={classes.addbutton} variant="contained" >+</Button>
+			</div>
 			<Grid container spacing={3} className={classes.list}>
 				{places?.map((place, i) => (
 					<Grid item key={i} xs={12}>
-						<Card>
+						<Card className={classes.card}>
 							<CardContent>
 								<PlaceDetails place={place} />
 							</CardContent>

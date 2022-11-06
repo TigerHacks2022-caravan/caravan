@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const userIdHandler = async (req, res) => {
+const getUserHandler = async (req, res) => {
   try {
     // Connection URL
     const url = process.env.MONGODB_URI;
@@ -14,30 +14,15 @@ const userIdHandler = async (req, res) => {
     console.log("Connected successfully to server");
     const db = client.db(dbName);
     const collection = db.collection(collectionName);
+    const id = req.query.id;
+    const user = await collection.findOne({ _id: id });
 
-    const name = req.body.name;
-    const location = req.body.location;
-    const caravanList = [];
-
-    if (!name || !location) {
-      return res.status(400).send({ message: "invalid request" });
-    }
-
-    const newUser = {
-      name: name,
-      location: location,
-      caravanList: caravanList,
-    };
-
-    const user = await collection.insertOne(newUser);
-
-    return res.status(200).send({
-      data: user,
-    });
+    if (user) return res.status(200).send({ data: user });
+    else return res.status(404).send({ message: "user data not found" });
   } catch (e) {
     console.error(e);
     return res.status(400).send({});
   }
 };
 
-module.exports = userIdHandler;
+module.exports = getUserHandler;
