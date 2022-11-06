@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { CssBaseline, Grid } from "@material-ui/core";
-import { RecoilRoot } from "recoil";
 import { useRecoilState } from "recoil";
 import GlobalStyle from "./globalstyles";
 import Header from "./components/header/header";
 import List from "./components/list/list";
 import Map from "./components/map/map";
-import { locationAtom } from "./atoms/atoms";
+import { locationAtom, caravanAtom } from "./atoms/atoms";
 
 const App = () => {
   const [coords, setCoords] = useRecoilState(locationAtom);
@@ -24,7 +23,7 @@ const App = () => {
   }, [setCoords]);
 
   return (
-    <RecoilRoot>
+    <>
       <GlobalStyle />
       <CssBaseline />
       <Header />
@@ -45,8 +44,30 @@ const App = () => {
           />
         </Grid>
       </Grid>
-    </RecoilRoot>
+    </>
   );
 };
+
+// 	useEffect((caravans) => {
+// 		const fetchCaravans = async () => {
+// 			const url = "http://localhost:5000/twee";
+
+// 			try {
+// 			  const response = await fetch(url, {method:'GET', headers: {
+// 				'Accept': '*/*',
+// 				'Content-Type': '*/*'
+// 			  }});
+
+// 			  const data = await response.json();
+// 			  console.log({ data, body: data.body });
+// 			  // setCaravans(data.data)
+// 			  console.log({ caravans });
+// 			  // Set recoil
+// 			} catch (error) {
+// 			  console.error(error);
+// 			}
+// 		  };
+// 		  fetchCaravans();
+// }, [])
 
 export default App;

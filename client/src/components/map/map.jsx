@@ -33,10 +33,61 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
         onChildClick={""}
       >
         {/* <Marker  */}
-        <div className="pin bounce" lat={coords.lat} lng={coords.lng} />
+        <div
+          id="userLocation"
+          className="pin bounce"
+          lat={coords.lat}
+          lng={coords.lng}
+        />
+        <div
+          id="rose"
+          className="pin bounce"
+          lat={38.954731}
+          lng={-92.325653}
+        />
+        <div
+          id="panera"
+          className="pin bounce"
+          lat={38.94802}
+          lng={-92.29531}
+        />
+        <div
+          id="shelter"
+          className="pin bounce"
+          lat={38.9553}
+          lng={-92.36701}
+        />
+        <div
+          id="valhalla"
+          className="pin bounce"
+          lat={38.96617}
+          lng={-92.37738}
+        />
       </GoogleMapReact>
     </div>
   );
 };
+
+//   return (
+//     <div className={classes.mapContainer}>
+//       <GoogleMapReact
+//         bootstrapURLKeys={{ key: "AIzaSyBVVXhb0fRaaV6KhmNMX65aKXsr2tZoADY" }}
+//         defaultCenter={coords}
+//         center={coords}
+//         defaultZoom={12}
+//         margin={[50, 50, 50, 50]}
+//         options={{
+//           disableDefaultUI: true,
+//           zoomControl: true,
+//           styles: mapStyles,
+//         }}
+//         onChange={""}
+//         onChildClick={""}
+//       >
+//         {/* <Marker  */}
+//         <div className="pin bounce" lat={coords.lat} lng={coords.lng} />
+//       </GoogleMapReact>
+//     </div>
+//   );
 
 export default Map;
