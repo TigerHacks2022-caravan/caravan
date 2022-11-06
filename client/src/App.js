@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { CssBaseline, Grid } from '@material-ui/core'
 import { RecoilRoot } from 'recoil';
-
+import GlobalStyle from './globalstyles';
 import Header from './components/header/header'
 import List from './components/list/list'
 import Map from './components/map/map'
@@ -24,6 +24,7 @@ const App = () => {
 
 	return (
 		<RecoilRoot>
+			<GlobalStyle />
 			<CssBaseline />
 			<Header />
 			<Grid container spacing={3} style={{ width: '100%', backgroundColor: '#2d597b' }}>
