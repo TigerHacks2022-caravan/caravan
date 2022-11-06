@@ -23,10 +23,20 @@ const App = () => {
 			}
 		)
 	}, [])
-	useEffect(() => {
-		fetchCaravans(
-			({ 
-
+		useEffect(() => {
+					const fetchCaravans = async () => {
+					  const url = "http://localhost:5000/twee";
+					  try {
+						const response = await fetch(url);
+						const data = await response.json();
+						console.log({ data, body: data.body });
+						// setCaravans(data.data)
+						console.log({ caravans });
+						// Set recoil
+					  } catch (error) {
+						console.error(error);
+					  }
+					};
 			})
 		)
 	}, [])
