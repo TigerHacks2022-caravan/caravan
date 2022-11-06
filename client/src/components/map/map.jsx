@@ -68,8 +68,8 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
               style={{
                 backgroundColor: caravan._id === selectedCaravan ? "red" : "",
               }}
-              lat={caravan.location.lat}
-              lng={caravan.location.lng}
+              lat={caravan.location?.lat || 0}
+              lng={caravan.location?.lng || 0}
               text={caravan.name}
               description={caravan.description || ""}
             />
@@ -79,8 +79,8 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
           key={testCaravan._id}
           id={testCaravan._id}
           className="pin bounce"
-          lat={testCaravan.location.lat}
-          lng={testCaravan.location.lng}
+          lat={testCaravan.location?.lat || 0}
+          lng={testCaravan.location?.lng || 0}
           text={testCaravan.name}
           description={testCaravan.description || ""}
         />
