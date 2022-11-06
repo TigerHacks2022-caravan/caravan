@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { CssBaseline, Grid } from '@material-ui/core'
+import { RecoilRoot } from 'recoil';
 
 import Header from './components/header/header'
 import List from './components/list/list'
@@ -22,7 +23,7 @@ const App = () => {
 	}, [])
 
 	return (
-		<>
+		<RecoilRoot>
 			<CssBaseline />
 			<Header />
 			<Grid container spacing={3} style={{ width: '100%' }}>
@@ -38,7 +39,7 @@ const App = () => {
 					/>
 				</Grid>
 			</Grid>
-		</>
+		</RecoilRoot>
 	)
 }
 
