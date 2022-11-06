@@ -14,6 +14,7 @@ const tweeJoinHandler = async (req, res) => {
 		const db = client.db(dbName)
 		const collection = db.collection('caravans')
 
+		// Adds new uid to caravan uid array then updates caravan
 		const updatedCaravan = req.body.updatedCaravan
 		updatedCaravan.userList.push(req.body.uid)
 

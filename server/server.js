@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000
 
 const tweeHandler = require('./controllers/tweeHandler')
 const tweeJoinHandler = require('./controllers/tweeJoinHandler')
-const newTweeHandler = require('./controllers/newTweeHandler')
+const newTweeHandler = require('./controllers/tweeCreateHandler')
 
 // routes
 app.get('/', (req, res) => {

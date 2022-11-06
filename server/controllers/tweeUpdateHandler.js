@@ -16,22 +16,23 @@ const tweeUpdateHandler = async (req, res) => {
 
         if(!req.body) return res.status(400).send({message: 'Improper request'})
 
-        const name = req.body.name
-        const image_url = req.body.image_url
-        const description = req.body.description
-        const uid = req.body.uid
-
-        if(!name || !image_url || !description || !uid) {
-            return res.status(400).send({message: 'Invalid Input'})
-        }
-
-        const newCaravan = {
+		const newCaravan = {
             name: name,
             image_url: image_url,
             description: description,
 			destination: destination,
             uid: uid
         }
+
+		// New caravan is populated by req using new values over old values where possible
+        req.body.name ? newCaravan.name = req.body.newName : newCaravan.name = req.body.name
+        req.body.image_url ? newCaravan.name = req.body.newImage_url : newCaravan.image_url = req.body.image_url
+        req.body.description ? newCaravan.name = req.body.newDescription : newCaravan.image_url = req.body.description
+		req.body.destination ? newCaravan.name = req.body.newDestination : newCaravan.image_url = req.body.destination
+		req.body.uid ? newCaravan.name = req.body.newUid : newCaravan.image_url = req.body.uid
+
+
+        
 
 		const caravans = await collection.updateOne(newCaravan).toArray()
 
