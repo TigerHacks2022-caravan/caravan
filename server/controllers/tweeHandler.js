@@ -1,18 +1,18 @@
-// const { MongoClient } = require('mongodb')
-import { MongoClient } from 'mongodb'
+const { MongoClient } = require('mongodb')
+// import { MongoClient } from 'mongodb'
 const tweeHandler = async (req, res, collection) => {
 	try {
-		// // Connection URL
-		// const url = process.env.MONGODB_URI
-		// const client = new MongoClient(url)
-		// // Database Name
-		// const dbName = 'non-prod'
+		// Connection URL
+		const url = process.env.MONGODB_URI
+		const client = new MongoClient(url)
+		// Database Name
+		const dbName = 'non-prod'
 
-		// // Use connect method to connect to the server
-		// await client.connect()
-		// console.log('Connected successfully to server')
-		// const db = client.db(dbName)
-		// const collection = db.collection('caravans')
+		// Use connect method to connect to the server
+		await client.connect()
+		console.log('Connected successfully to server')
+		const db = client.db(dbName)
+		const collection = db.collection('caravans')
 		const caravans = await collection.find({}).toArray()
 
 		return res.status(200).send({
@@ -24,5 +24,5 @@ const tweeHandler = async (req, res, collection) => {
 	}
 }
 
-// module.exports = tweeHandler
-export default tweeHandler
+module.exports = tweeHandler
+// export default tweeHandler
