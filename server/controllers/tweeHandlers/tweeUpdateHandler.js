@@ -1,47 +1,47 @@
-const { MongoClient } = require('mongodb')
+const { MongoClient } = require("mongodb");
 
 const tweeUpdateHandler = async (req, res) => {
-	try {
-		// Connection URL
-		const url = process.env.MONGODB_URI
-		const client = new MongoClient(url)
-		// Database Name
-		const dbName = 'non-prod'
+  try {
+    // Connection URL
+    const url = process.env.MONGODB_URI;
+    const client = new MongoClient(url);
+    // Database Name
+    const dbName = "non-prod";
 
-		// Use connect method to connect to the server
-		await client.connect()
-		console.log('Connected successfully to server')
-		const db = client.db(dbName)
-		const collection = db.collection('caravans')
+    // Use connect method to connect to the server
+    await client.connect();
+    console.log("Connected successfully to server");
+    const db = client.db(dbName);
+    const collection = db.collection("caravans");
 
-        if(!req.body) return res.status(400).send({message: 'Improper request'})
+    if (!req.body) return res.status(400).send({ message: "Improper request" });
 
-        const name = req.body.name
-        const image_url = req.body.image_url
-        const description = req.body.description
-        const uid = req.body.uid
+    const name = req.body.name;
+    const image_url = req.body.image_url;
+    const description = req.body.description;
+    const uid = req.body.uid;
 
-        if(!name || !image_url || !description || !uid) {
-            return res.status(400).send({message: 'Invalid Input'})
-        }
+    if (!name || !image_url || !description || !uid) {
+      return res.status(400).send({ message: "Invalid Input" });
+    }
 
-        const newCaravan = {
-            name: name,
-            image_url: image_url,
-            description: description,
-			destination: destination,
-            uid: uid
-        }
+    const newCaravan = {
+      name: name,
+      image_url: image_url,
+      description: description,
+      destination: destination,
+      uid: uid,
+    };
 
-		const caravans = await collection.updateOne(newCaravan).toArray()
+    const caravans = await collection.updateOne(newCaravan).toArray();
 
-		return res.status(200).send({
-			data: caravans
-		})
-	} catch (e) {
-		console.error(e)
-		return res.status(400).send({})
-	}
-}
+    return res.status(200).send({
+      data: caravans,
+    });
+  } catch (e) {
+    console.error(e);
+    return res.status(400).send({});
+  }
+};
 
-module.exports = tweeUpdateHandler
+module.exports = tweeUpdateHandler;
