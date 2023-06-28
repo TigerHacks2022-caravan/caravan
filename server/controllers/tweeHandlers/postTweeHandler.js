@@ -19,20 +19,21 @@ const postTweeHandler = async (req, res) => {
 		// if(req.body == null) return res.status(400).send({message: 'Improper request'})
 
 		const name = req.body.name
-		const image_url = req.body.image_url
 		const description = req.body.description
 		const destination = req.body.destination
+		const location = req.body.location
 		const ownerId = req.body.ownerId
 		const userList = [ownerId]
 
-		if (!name || !description || !destination || !ownerId) {
+		if (!name || !description || !destination || !ownerId || !location) {
 			return res.status(400).send({ message: 'Invalid Input' })
 		}
 
 		const newCaravan = {
 			name: name,
-			destination: destination,
 			description: description,
+			destination: destination,
+			location: location,
 			ownerId: ownerId,
 			userList: userList
 		}
